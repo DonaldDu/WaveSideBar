@@ -1,14 +1,12 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.novoda.bintray-release'
 android {
-    compileSdkVersion 23
-    buildToolsVersion "25.0.2"
-
+    compileSdkVersion 28
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "0.2.0"
     }
     buildTypes {
         release {
@@ -17,9 +15,18 @@ android {
         }
     }
 }
-
+publish {
+    userOrg = 'user'
+    groupId = 'com.github.DonaldDu'
+    artifactId = 'WaveSideBar'
+    //noinspection GroovyAccessibility
+    publishVersion = android.defaultConfig.versionName
+    desc = 'desc'
+    website = 'website'
+}
+if (project.hasProperty("publishToNexus")) publishToNexus()
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.13'
+    compileOnly 'com.android.support:appcompat-v7:28.0.0'
 }

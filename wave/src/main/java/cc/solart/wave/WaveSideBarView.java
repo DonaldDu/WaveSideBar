@@ -37,9 +37,9 @@ public class WaveSideBarView extends View {
     // 当前选中的位置
     private int mChoose = -1;
 
-    private int oldChoose ;
+    private int oldChoose;
 
-    private int newChoose ;
+    private int newChoose;
 
     // 字母列表画笔
     private Paint mLettersPaint = new Paint();
@@ -264,8 +264,6 @@ public class WaveSideBarView extends View {
 
     /**
      * 绘制波浪
-     *
-     * @param canvas
      */
     private void drawWavePath(Canvas canvas) {
         mWavePath.reset();
@@ -300,7 +298,7 @@ public class WaveSideBarView extends View {
 
         mBallPath.reset();
         mBallPath.addCircle(mBallCentreX, mCenterY, mBallRadius, Path.Direction.CW);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mBallPath.op(mWavePath, Path.Op.DIFFERENCE);
         }
 
@@ -322,7 +320,7 @@ public class WaveSideBarView extends View {
 
                 mRatio = (float) value.getAnimatedValue();
                 //球弹到位的时候，并且点击的位置变了，即点击的时候显示当前选择位置
-                if (mRatio==1f&&oldChoose != newChoose){
+                if (mRatio == 1f && oldChoose != newChoose) {
                     if (newChoose >= 0 && newChoose < mLetters.size()) {
                         mChoose = newChoose;
                         if (listener != null) {
